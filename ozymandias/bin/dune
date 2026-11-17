@@ -1,0 +1,4 @@
+(executable
+ (public_name ozymandias)
+ (name main)
+ (libraries ozymandias))
