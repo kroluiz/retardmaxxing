@@ -34,6 +34,23 @@ value ozy_prog_load(value v_insns)
     CAMLreturn(Val_int(fd));
 }
 
+value ozy_prog_test_run(value v_fd)
+{
+    static unsigned char data[64];
+    union bpf_attr attr;
+    memset(&attr, 0, sizeof(attr));
+    attr.test.prog_fd = Int_val(v_fd);
+    attr.test.data_in = (uint64_t)(uintptr_t)data;
+    attr.test.data_size_in = sizeof(data);
+    attr.test.repeat = 1;
+
+    if (syscall(__NR_bpf, BPF_PROG_TEST_RUN, &attr, sizeof(attr)) < 0) {
+        snprintf(err_buf, sizeof(err_buf), "BPF_PROG_TEST_RUN: %s", strerror(errno));
+        caml_failwith(err_buf);
+    }
+    return Val_long(attr.test.retval);
+}
+
 value ozy_close(value v_fd)
 {
     close(Int_val(v_fd));

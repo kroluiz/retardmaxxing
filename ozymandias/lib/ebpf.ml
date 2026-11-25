@@ -2,7 +2,7 @@ type reg = R0 | R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | R9 | R10
 
 type src = Reg of reg | Imm of int32
 
-type alu_op = Add | Sub | Mul | Sdiv | Mov
+type alu_op = Add | Sub | Mul | Sdiv | Rsh | Mov
 
 type jmp_op = Jeq | Jne | Jsgt | Jslt
 
@@ -40,6 +40,7 @@ let alu_code op =
   | Sub -> 0x10
   | Mul -> 0x20
   | Sdiv -> 0x30
+  | Rsh -> 0x70
   | Mov -> 0xb0
 
 let jmp_code op =
