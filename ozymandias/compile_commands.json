@@ -1,0 +1,1 @@
+[{"directory":"_build/default/lib","file":"bpf_stubs.c","arguments":["gcc","-O2","-fno-strict-aliasing","-fwrapv","-fPIC","-pthread","-D_FILE_OFFSET_BITS=64","-Wall","-fdiagnostics-color=always","-g","-I","/home/luiz/.opam/default/lib/ocaml","-o","bpf_stubs.o","-c","bpf_stubs.c"]}]

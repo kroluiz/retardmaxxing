@@ -1,2 +1,5 @@
 (library
- (name ozymandias))
+ (name ozymandias)
+ (foreign_stubs
+  (language c)
+  (names bpf_stubs)))
